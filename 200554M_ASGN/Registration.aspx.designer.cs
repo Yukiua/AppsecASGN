@@ -15,6 +15,15 @@ namespace _200554M_ASGN
     {
 
         /// <summary>
+        /// pwdchecker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pwdchecker;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -24,112 +33,130 @@ namespace _200554M_ASGN
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// fname control.
+        /// tb_fname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fname;
+        protected global::System.Web.UI.WebControls.TextBox tb_fname;
 
         /// <summary>
-        /// tfname control.
+        /// fnamechecker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tfname;
+        protected global::System.Web.UI.WebControls.Label fnamechecker;
 
         /// <summary>
-        /// lname control.
+        /// tb_lname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lname;
+        protected global::System.Web.UI.WebControls.TextBox tb_lname;
 
         /// <summary>
-        /// tlname control.
+        /// lnamechecker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tlname;
+        protected global::System.Web.UI.WebControls.Label lnamechecker;
 
         /// <summary>
-        /// photo control.
+        /// file control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label photo;
+        protected global::System.Web.UI.WebControls.FileUpload file;
 
         /// <summary>
-        /// tphoto control.
+        /// filecheck control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tphoto;
+        protected global::System.Web.UI.WebControls.Label filecheck;
 
         /// <summary>
-        /// password control.
+        /// tb_pw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label password;
+        protected global::System.Web.UI.WebControls.TextBox tb_pw;
 
         /// <summary>
-        /// tpass control.
+        /// l_pwdchecker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tpass;
+        protected global::System.Web.UI.WebControls.Label l_pwdchecker;
 
         /// <summary>
-        /// email control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label email;
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// temail control.
+        /// tb_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox temail;
+        protected global::System.Web.UI.WebControls.TextBox tb_email;
 
         /// <summary>
-        /// dob control.
+        /// emailchecker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label dob;
+        protected global::System.Web.UI.WebControls.Label emailchecker;
 
         /// <summary>
-        /// tdob control.
+        /// tb_dob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tdob;
+        protected global::System.Web.UI.WebControls.TextBox tb_dob;
+
+        /// <summary>
+        /// datechecker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label datechecker;
+
+        /// <summary>
+        /// tb_ccn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_ccn;
 
         /// <summary>
         /// ccn control.
@@ -141,13 +168,13 @@ namespace _200554M_ASGN
         protected global::System.Web.UI.WebControls.Label ccn;
 
         /// <summary>
-        /// tccn control.
+        /// tb_exp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tccn;
+        protected global::System.Web.UI.WebControls.TextBox tb_exp;
 
         /// <summary>
         /// exp control.
@@ -159,13 +186,13 @@ namespace _200554M_ASGN
         protected global::System.Web.UI.WebControls.Label exp;
 
         /// <summary>
-        /// texp control.
+        /// tb_cvv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox texp;
+        protected global::System.Web.UI.WebControls.TextBox tb_cvv;
 
         /// <summary>
         /// cvv control.
@@ -177,12 +204,12 @@ namespace _200554M_ASGN
         protected global::System.Web.UI.WebControls.Label cvv;
 
         /// <summary>
-        /// tcvv control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tcvv;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
