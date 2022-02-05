@@ -7,9 +7,12 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
+    <form runat="server">
+    <h1>This is landing page, the page of all pages</h1>
+    <asp:Button ID="button1" runat="server" Text="Register" OnClick="Register" />
+    <asp:Button ID="button2" runat="server" Text="Login" OnClick="Login" />
+
     </form>
+
 </body>
 </html>

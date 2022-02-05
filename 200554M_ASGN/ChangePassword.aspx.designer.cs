@@ -11,7 +11,7 @@ namespace _200554M_ASGN
 {
 
 
-    public partial class Login
+    public partial class ChangePassword
     {
 
         /// <summary>
@@ -24,49 +24,58 @@ namespace _200554M_ASGN
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// tb_email control.
+        /// tb_olpw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_email;
+        protected global::System.Web.UI.WebControls.TextBox tb_olpw;
 
         /// <summary>
-        /// emailchecker control.
+        /// olpw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailchecker;
+        protected global::System.Web.UI.WebControls.Label olpw;
 
         /// <summary>
-        /// tb_password control.
+        /// tb_newpw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_password;
+        protected global::System.Web.UI.WebControls.TextBox tb_newpw;
 
         /// <summary>
-        /// l_pwdchecker control.
+        /// newpw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label l_pwdchecker;
+        protected global::System.Web.UI.WebControls.Label newpw;
 
         /// <summary>
-        /// lblmessage control.
+        /// tb_checknewpw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmessage;
+        protected global::System.Web.UI.WebControls.TextBox tb_checknewpw;
+
+        /// <summary>
+        /// checknewpw control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label checknewpw;
 
         /// <summary>
         /// Button1 control.

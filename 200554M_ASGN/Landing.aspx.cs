@@ -13,5 +13,13 @@ namespace _200554M_ASGN
         {
 
         }
+        protected void Register(object sender, EventArgs e)
+        {
+            Response.Redirect("Registration.aspx");
+        }
+        protected void Login(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }
