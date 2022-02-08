@@ -183,7 +183,6 @@ namespace _200554M_ASGN
             {
                 if (Regexed()[0] == "true")
                 {
-
                     string email = (string)Session["User"];
                     SHA512Managed hash = new SHA512Managed();
                     string dbhash = getdbhash(email);

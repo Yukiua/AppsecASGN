@@ -5,12 +5,13 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Web.Script.Serialization;
-using System.Web.Services;
-using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace _200554M_ASGN
 {
@@ -89,7 +90,7 @@ namespace _200554M_ASGN
                 using(SqlConnection con = new SqlConnection(DBConnectionString))
                 {
                     using(SqlCommand cmd = new SqlCommand("INSERT INTO Account VALUES(@Email,@FName,@LName,@PasswordHash," +
-                        "@PasswordSalt,@DateBirth,@Photo,@CardNum,@CardExp,@CardCvv,@Key,@IV)"))
+                        "@PasswordSalt,@DateBirth,@Photo,@CardNum,@CardExp,@CardCvv,@Key,@IV,@RetryAttempts,@IsLocked,@LockedDateTime)"))
                     {
                         using(SqlDataAdapter sda = new SqlDataAdapter())
                         {
@@ -107,6 +108,9 @@ namespace _200554M_ASGN
                             cmd.Parameters.AddWithValue("@CardCvv", encryptdata(tb_cvv.Text.Trim()));
                             cmd.Parameters.AddWithValue("@Key", Key);
                             cmd.Parameters.AddWithValue("@IV", IV);
+                            cmd.Parameters.AddWithValue("@RetryAttempts", 3);
+                            cmd.Parameters.AddWithValue("@IsLocked", false);
+                            cmd.Parameters.AddWithValue("@LockedDateTime", DateTime.Now);
                             cmd.Connection = con;
                             con.Open();
                             cmd.ExecuteNonQuery();
@@ -228,6 +232,18 @@ namespace _200554M_ASGN
                 return smt;
             }
         }
+        static async Task Execute(int validate)
+        {
+            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            var client = new SendGridClient("SENDGRIDKEY");
+            var from = new EmailAddress("setokurushi@gmail.com", "Example User");
+            var subject = "Verification Code:";
+            var to = new EmailAddress("setokurushi@gmail.com", "Example User");
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = string.Format("<strong>Code: {0} </strong>",validate);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
         protected void btn_submit(object sender, EventArgs e)
         {
             if (ValidateCaptcha())
@@ -251,9 +267,12 @@ namespace _200554M_ASGN
                         Key = cipher.Key;
                         IV = cipher.IV;
                         createAccount();
-
                         file.SaveAs(Server.MapPath("/Uploads/" + file.FileName));
-                        Response.Redirect("Login.aspx");
+                        Random r = new Random();
+                        int validate = r.Next();
+                        _ = Execute(validate);
+                        Session["ex"] = validate;
+                        Response.Redirect("Verify.aspx",false);
                     }
                     else
                     {

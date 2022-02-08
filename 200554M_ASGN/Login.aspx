@@ -43,9 +43,10 @@
                 </tr>
                                 <tr>
                     <td class="auto-style3">&nbsp;</td>
-                    <td>
+                    <td>                        
+                        <asp:Label ID="errormsg" runat="server" Text="&nbsp;" EnableViewState="false"></asp:Label><br />
+
                         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="btn_submit" />
-                        <asp:Label ID="errormsg" runat="server" Text="&nbsp;"></asp:Label>
                     </td>
                 </tr>
             </table>
