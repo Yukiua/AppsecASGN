@@ -114,11 +114,8 @@ namespace _200554M_ASGN
                 throw ex;
             }
         }
-        protected List<string> Regexed()
+        protected List<string> Regexed(string oldpassword,string newpassword,string checknew)
         {
-            string oldpassword = tb_olpw.Text.Trim();
-            string newpassword = tb_newpw.Text.Trim();
-            string checknew = tb_checknewpw.Text.Trim();
             List<string> retu = new List<string>();
             retu.Add("false");
             if (oldpassword != null)
@@ -166,9 +163,9 @@ namespace _200554M_ASGN
         }
         protected void btn_submit(object sender,EventArgs e)
         {
-            string oldpassword = tb_olpw.Text.Trim();
-            string newpassword = tb_newpw.Text.Trim();
-            string checknew = tb_checknewpw.Text.Trim();
+            string oldpassword = HttpUtility.HtmlEncode(tb_olpw.Text.Trim());
+            string newpassword = HttpUtility.HtmlEncode(tb_newpw.Text.Trim());
+            string checknew = HttpUtility.HtmlEncode(tb_checknewpw.Text.Trim());
             if(newpassword != checknew)
             {
                 errormsg.Text = "Password do not match!";
@@ -181,7 +178,7 @@ namespace _200554M_ASGN
             }
             else
             {
-                if (Regexed()[0] == "true")
+                if (Regexed(oldpassword,newpassword,checknew)[0] == "true")
                 {
                     string email = (string)Session["User"];
                     SHA512Managed hash = new SHA512Managed();
@@ -216,11 +213,15 @@ namespace _200554M_ASGN
                 }
                 else
                 {
-                    errormsg.Text = Regexed()[1];
+                    errormsg.Text = Regexed(oldpassword,newpassword,checknew)[1];
                     errormsg.ForeColor = Color.Red;
                 }
             }
 
+        }
+        protected void Homepage(object sender,EventArgs e)
+        {
+            Response.Redirect("Homepage.aspx", false);
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System.Web;
 
 namespace _200554M_ASGN
 {
@@ -32,7 +33,7 @@ namespace _200554M_ASGN
         }
         protected void btn_checkPasswordclick(object sender, EventArgs e)
         {
-            int scores = checkpw(tb_pw.Text);
+            int scores = checkpw(HttpUtility.HtmlEncode(tb_pw.Text));
             string status = "";
             switch(scores)
             {
@@ -95,17 +96,17 @@ namespace _200554M_ASGN
                         using(SqlDataAdapter sda = new SqlDataAdapter())
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@Email", tb_email.Text.Trim());
-                            cmd.Parameters.AddWithValue("@FName", tb_fname.Text.Trim());
-                            cmd.Parameters.AddWithValue("@LName", tb_lname.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(tb_email.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@FName", HttpUtility.HtmlEncode(tb_fname.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@LName", HttpUtility.HtmlEncode(tb_lname.Text.Trim()));
                             cmd.Parameters.AddWithValue("@PasswordHash", finalHash);
                             cmd.Parameters.AddWithValue("@PasswordSalt", salt);
-                            cmd.Parameters.AddWithValue("@DateBirth", tb_dob.Text.Trim());
+                            cmd.Parameters.AddWithValue("@DateBirth", HttpUtility.HtmlEncode(tb_dob.Text.Trim()));
                             cmd.Parameters.AddWithValue("@Photo", file.FileName);
                             //cmd.Parameters.AddWithValue("@Nric", encryptData(tb_nric.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@CardNum", encryptdata(tb_ccn.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@CardExp", encryptdata(tb_exp.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@CardCvv", encryptdata(tb_cvv.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@CardNum", encryptdata(HttpUtility.HtmlEncode(tb_ccn.Text.Trim())));
+                            cmd.Parameters.AddWithValue("@CardExp", encryptdata(HttpUtility.HtmlEncode(tb_exp.Text.Trim())));
+                            cmd.Parameters.AddWithValue("@CardCvv", encryptdata(HttpUtility.HtmlEncode(tb_cvv.Text.Trim())));
                             cmd.Parameters.AddWithValue("@Key", Key);
                             cmd.Parameters.AddWithValue("@IV", IV);
                             cmd.Parameters.AddWithValue("@RetryAttempts", 3);
@@ -177,44 +178,44 @@ namespace _200554M_ASGN
         {
             List<string> smt = new List<string>();
             smt.Add("false");
-            if (tb_pw.Text.Trim() != null && tb_fname.Text.Trim() != null && tb_lname.Text.Trim() != null && tb_email.Text.Trim() != null && tb_dob.Text.Trim() != null && tb_ccn.Text.Trim() != null && tb_exp.Text.Trim() != null && tb_cvv.Text.Trim() != null)
+            if (HttpUtility.HtmlEncode(tb_pw.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_fname.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_lname.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_email.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_dob.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_ccn.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_exp.Text.Trim()) != null && HttpUtility.HtmlEncode(tb_cvv.Text.Trim()) != null)
             {
-                if (tb_pw.Text.Trim().Length < 12 && !Regex.IsMatch(tb_pw.Text.Trim(), "[0-9]") && !Regex.IsMatch(tb_pw.Text.Trim(), "[A-Z]") && !Regex.IsMatch(tb_pw.Text.Trim(), "[a-z]") && !Regex.IsMatch(tb_pw.Text.Trim(), "[a-z]") && !Regex.IsMatch(tb_pw.Text.Trim(), "[^A-Za-z0-9]"))
+                if (HttpUtility.HtmlEncode(tb_pw.Text.Trim()).Length < 12 && !Regex.IsMatch(HttpUtility.HtmlEncode(tb_pw.Text.Trim()), "[0-9]") && !Regex.IsMatch(HttpUtility.HtmlEncode(tb_pw.Text.Trim()), "[A-Z]") && !Regex.IsMatch(HttpUtility.HtmlEncode(tb_pw.Text.Trim()), "[a-z]") && !Regex.IsMatch(HttpUtility.HtmlEncode(tb_pw.Text.Trim()), "[a-z]") && !Regex.IsMatch(HttpUtility.HtmlEncode(tb_pw.Text.Trim()), "[^A-Za-z0-9]"))
                 {
                     smt.Add( "pw");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_fname.Text.Trim(), "^[A-Za-z]+$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_fname.Text.Trim()), "^[A-Za-z]+$"))
                 {
                     smt.Add( "fname");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_lname.Text.Trim(), "^[A-Za-z]+$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_lname.Text.Trim()), "^[A-Za-z]+$"))
                 {
                     smt.Add( "lname");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_email.Text.Trim(), @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_email.Text.Trim()), @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"))
                 {
                     smt.Add( "email");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_dob.Text.Trim(), @"^(19|20)\d\d[- \/.](0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_dob.Text.Trim()), @"^(19|20)\d\d[- \/.](0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])$"))
                 {
                     smt.Add(tb_dob.Text);
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_ccn.Text.Trim(), @"^4[0-9]{12}(?:[0-9]{3})?$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_ccn.Text.Trim()), @"^4[0-9]{12}(?:[0-9]{3})?$"))
                 {
                     smt.Add( "ccn");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_exp.Text.Trim(), @"^(0[1-9]|1[0-2])\/?([0-9]{2})$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_exp.Text.Trim()), @"^(0[1-9]|1[0-2])\/?([0-9]{2})$"))
                 {
                     smt.Add( "exp");
                     return smt;
                 }
-                else if (!Regex.IsMatch(tb_cvv.Text.Trim(), @"^[0-9]{3}$"))
+                else if (!Regex.IsMatch(HttpUtility.HtmlEncode(tb_cvv.Text.Trim()), @"^[0-9]{3}$"))
                 {
                     smt.Add( "cvv");
                     return smt;
@@ -234,7 +235,6 @@ namespace _200554M_ASGN
         }
         static async Task Execute(int validate)
         {
-            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
             var client = new SendGridClient("SENDGRIDKEY");
             var from = new EmailAddress("setokurushi@gmail.com", "Example User");
             var subject = "Verification Code:";
@@ -244,6 +244,10 @@ namespace _200554M_ASGN
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
         }
+        protected void Landing(object sender,EventArgs e)
+        {
+            Response.Redirect("Landing.aspx", false);
+        }
         protected void btn_submit(object sender, EventArgs e)
         {
             if (ValidateCaptcha())
@@ -252,7 +256,7 @@ namespace _200554M_ASGN
                 {
                     if (file.HasFile)
                     {
-                        string pwd = tb_pw.Text.ToString().Trim();
+                        string pwd = HttpUtility.HtmlEncode(tb_pw.Text.ToString()).Trim();
                         RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
                         byte[] saltbyte = new byte[8];
                         rng.GetBytes(saltbyte);

@@ -53,7 +53,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>Login</h1>
+            <h1>Change Password</h1>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style3">Old Password</td>
@@ -85,6 +85,10 @@
                     </td>
                 </tr>
             </table>
+            <br />
+            <br />
+                        <asp:Button ID="change" runat="server" Text="Back to Homepage" OnClick="Homepage" Visible="true" />
+
         </div>
     </form>
 </body>

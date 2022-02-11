@@ -94,7 +94,7 @@ namespace _200554M_ASGN
         {
             bool result = true;
             string captchaResponse = Request.Form["g-recaptcha-response"];
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://www.google.com/recaptcha/api/siteverify?secret=SECRETKEY &response=" + captchaResponse);
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://www.google.com/recaptcha/api/siteverify?secret=SECERTKEY &response=" + captchaResponse);
             try
             {
                 using (WebResponse wreponse = req.GetResponse())
@@ -200,14 +200,28 @@ namespace _200554M_ASGN
                 throw new Exception(ex.ToString());
             }
         }
+        protected void Landing(object sender,EventArgs e)
+        {
+            Response.Redirect("Landing.aspx", false);
+        }
+        public bool time()
+        {
+            if(Session["Time"] != null)
+            {
+                if(DateTime.Parse(Session["Time"].ToString()) < DateTime.Now)
+                        {
+                    return false;
+                }
+                else { return true; }
+            }
+            return true;
+        }
         protected void btn_submit(object sender,EventArgs e)
         {
             if (ValidateCaptcha())
             {
-                string pw = tb_password.Text.ToString().Trim();
-                string email = tb_email.Text.ToString().Trim();
-
-                    
+                string pw = HttpUtility.HtmlEncode(tb_password.Text.ToString().Trim());
+                string email = HttpUtility.HtmlEncode(tb_email.Text.ToString().Trim());
                 SHA512Managed hash = new SHA512Managed();
                 string dbhash = getdbhash(email);
                 string dbsalt = getdbsalt(email);
@@ -218,7 +232,7 @@ namespace _200554M_ASGN
                         string pwdsalt = pw + dbsalt;
                         byte[] hashsalt = hash.ComputeHash(Encoding.UTF8.GetBytes(pwdsalt));
                         string userhash = Convert.ToBase64String(hashsalt);
-                        if (userhash.Equals(dbhash) && (Session["Time"] != null && DateTime.Parse(Session["Time"].ToString()) < DateTime.Now))
+                        if (userhash.Equals(dbhash) && time())
                         {
                             Session["User"] = tb_email.Text.Trim();
                             string guid = Guid.NewGuid().ToString();
@@ -231,7 +245,7 @@ namespace _200554M_ASGN
                             if (Session["Retry"]==null) Session["Retry"] = "1";
                             if (Session["Retry"].ToString() != "111")
                             {
-                                lblmessage.Text = "Email or Password is wrong. Please try again!";
+                                lblmessage.Text = "Email or Password is wrong. Please try again.";
                                 lblmessage.ForeColor = Color.Red;
                                 Session["Retry"] += "1";
                             }
@@ -239,7 +253,10 @@ namespace _200554M_ASGN
                             {
                             lblmessage.Text = "Account is locked. PLease wait a minute";
                             lblmessage.ForeColor = Color.Red;
+                                if (Session["Time"] == null)
+                                {
                                 Session["Time"] = DateTime.Now.AddSeconds(15);
+                                }
                             }
 
                         }
