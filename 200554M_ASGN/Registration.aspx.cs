@@ -238,7 +238,7 @@ namespace _200554M_ASGN
             var client = new SendGridClient("SENDGRIDKEY");
             var from = new EmailAddress("setokurushi@gmail.com", "Example User");
             var subject = "Verification Code:";
-            var to = new EmailAddress("setokurushi@gmail.com", "Example User");
+            var to = new EmailAddress(HttpUtility.HtmlEncode(tb_email.Text.ToString()).Trim(), "Example User");
             var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = string.Format("<strong>Code: {0} </strong>",validate);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
@@ -286,7 +286,7 @@ namespace _200554M_ASGN
                 }
                 else
                 {
-                    lblmessage.Text = "Try Again"+Servervalidate()[1];
+                    lblmessage.Text = "Try Again";
                     lblmessage.ForeColor = Color.Red;
                 }
             }
